@@ -1,16 +1,16 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Main } from './pages/Main.tsx';
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<></>} />
-        <Route path="/login" element={<></>} />
-        <Route path="/pageTwo" element={<></>} />
-        <Route path="/pageThree" element={<></>} />
-      </Routes>
-    </BrowserRouter>
-  );
+    return (
+        <>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Main/>} />
+                </Routes>
+            </BrowserRouter>
+        </>
+    );
 }
 
 export default App;
