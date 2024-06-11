@@ -1,12 +1,17 @@
 import styled from 'styled-components';
-import Img from '../../assets/image.png'
+import Img from '../../assets/mainImage1.png';
+import { Logo } from '../logo/Logo.tsx';
 
 export const Main1 = () => {
     return (
         <Container>
             <Wrapper>
+                <Logo />
                 <TextArea>
-                    <Text1 color={'#424434'}>Health-</Text1><Text1 color={'#87933C'}>Meal.</Text1>
+                    <Text1 color={'#424434'}>Health</Text1>
+                    <Text1 color={'#424434'}>-</Text1>
+                    <Text1 color={'#87933C'}>Meal</Text1>
+                    <Text1 color={'#D4DF90'}>.</Text1>
                     <Text2>건강에 꼭 필요한</Text2>
                     <Text2>음식과 요리를 한번에</Text2>
                 </TextArea>
