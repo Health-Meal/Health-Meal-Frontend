@@ -5,6 +5,7 @@ import { Food } from './pages/Food.tsx';
 import { Cuisine } from './pages/Cuisine.tsx';
 import { Login } from './pages/Login.tsx';
 import { SignUp } from './pages/SignUp.tsx';
+import { Save } from './pages/Save.tsx';
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                     <Route path="/keyword" element={<Keyword />} />
                     <Route path="/food/:id" element={<Food />} />
                     <Route path="/cuisine/:id" element={<Cuisine />} />
+                    <Route path="/save" element={<Save />} />
                 </Routes>
             </BrowserRouter>
         </>

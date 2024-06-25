@@ -1,7 +1,7 @@
 import { Logo } from '../components/logo/Logo.tsx';
 import styled from 'styled-components';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export const Keyword = () => {
@@ -31,6 +31,9 @@ export const Keyword = () => {
                     <Name color={'#D4DF90'}>.</Name>
                 </div>
                 <SearchBox placeholder="키워드를 입력해주세요" onChange={onChange} onKeyDown={onSearch} value={search} />
+                <Link to={"/save"}>
+                    <Save>저장한 음식</Save>
+                </Link>
                 <TagWrapper>
                     <Tag>무릎</Tag>
                     <Tag>위장염</Tag>
@@ -118,3 +121,10 @@ const SentenceBox = styled.div`
     justify-content: center;
     align-items: center;
 `;
+
+const Save = styled.div`
+    font-size: 20px;
+    position: absolute;
+    right: 30px;
+    top: 200px;
+`

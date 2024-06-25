@@ -2,7 +2,7 @@ import { Logo } from '../components/logo/Logo.tsx';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Cuisine = () => {
     const location = useLocation();
@@ -19,7 +19,9 @@ export const Cuisine = () => {
 
     return (
         <>
-            <Logo />
+            <Link to="/keyword">
+                <Logo />
+            </Link>
             <Wrapper>
                 <Container>
                     <Title>{params.get('food')}을 이용한 요리</Title>

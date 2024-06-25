@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Logo } from '../components/logo/Logo.tsx';
 import Bookmark from '../assets/bookmark.svg';
-import FoodImg from '../assets/carrot.png';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
@@ -24,9 +23,16 @@ export const Food = () => {
         });
     }, []);
 
+    const bookMarking = () => {
+        localStorage.setItem("bookmarks", JSON.stringify([...JSON.parse(localStorage.getItem("bookmarks") || "[]") || [], { ...foodInfo, keyword: params.get("keyword") }]))
+        alert('북마크 됨')
+    }
+
     return (
         <>
-            <Logo />
+            <Link to="/keyword">
+                <Logo />
+            </Link>
             <Wrapper>
                 <Container>
                     <Box>
@@ -40,7 +46,7 @@ export const Food = () => {
                         </Link>
                         <NameWrapper>
                             <Name>{foodInfo.name}</Name>
-                            <BookmarkImg src={Bookmark} alt="" />
+                            <BookmarkImg src={Bookmark} alt="" onClick={bookMarking} />
                         </NameWrapper>
                         <Text>{foodInfo.description}</Text>
                         <CuisineImg src={foodInfo.image} alt="" />
