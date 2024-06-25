@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Img from '../../assets/mainImage2.png';
 import { Logo } from '../logo/Logo.tsx';
+import { Link } from 'react-router-dom';
 
 export const Main2 = () => {
     return (
@@ -12,7 +13,9 @@ export const Main2 = () => {
                     <Text>건강상태 입력하고</Text>
                     <Text fontWeight="600">자신에게 필요한 영양성분을 찾으세요!</Text>
                 </TextArea>
-                <Button>입럭하러가기</Button>
+                <Link to="/login">
+                    <Button>입럭하러가기</Button>
+                </Link>
                 <TextArea>
                     <TextSpan color={'#424434'}>Health</TextSpan>
                     <TextSpan color={'#424434'}>-</TextSpan>

@@ -2,30 +2,48 @@ import styled from 'styled-components';
 import { Logo } from '../components/logo/Logo.tsx';
 import Bookmark from '../assets/bookmark.svg';
 import FoodImg from '../assets/carrot.png';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Food = () => {
+    const location = useLocation();
+    const keywordId = location.pathname.split('/')[2];
+    const [foodInfo, setFoodInfo] = useState({
+        foodId: 0,
+        name: '',
+        description: '',
+        image: ''
+    });
+    const params = new URLSearchParams(location.search);
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/food/${keywordId}`).then((res) => {
+            const { foodId, name, description, image } = res.data;
+            setFoodInfo({ foodId, name, description, image });
+        });
+    }, []);
+
     return (
         <>
             <Logo />
             <Wrapper>
                 <Container>
                     <Box>
-                        <Title color={'#87933C'}>눈</Title>
+                        <Title color={'#87933C'}>{params.get('keyword')}</Title>
                         <Title>에 좋은 음식</Title>
-                        <CuisineSpan>
-                            <Cuisine>당근</Cuisine>
-                            <Cuisine>을 이용한 요리</Cuisine>
-                        </CuisineSpan>
+                        <Link to={`/cuisine/${foodInfo.foodId}?food=${foodInfo.name}`}>
+                            <CuisineSpan>
+                                <Cuisine>{foodInfo.name}</Cuisine>
+                                <Cuisine>을 이용한 요리</Cuisine>
+                            </CuisineSpan>
+                        </Link>
                         <NameWrapper>
-                            <Name>당근</Name>
+                            <Name>{foodInfo.name}</Name>
                             <BookmarkImg src={Bookmark} alt="" />
                         </NameWrapper>
-                        <Text>당근은 시력을 보호하고 야맹증을 막아줍니다.
-                            비타민 A가 풍부하게 함유되어 있어
-                            안구 표면의 점막을 건강하게 유지시켜 주며,
-                            안구가 건조해지는 것을 막아주어 시력감퇴를 예방해주는
-                            탁월한 효과가 있습니다. </Text>
-                        <CuisineImg src={FoodImg} alt="" />
+                        <Text>{foodInfo.description}</Text>
+                        <CuisineImg src={foodInfo.image} alt="" />
                     </Box>
                 </Container>
             </Wrapper>

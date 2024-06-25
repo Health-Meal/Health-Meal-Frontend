@@ -1,7 +1,24 @@
 import { Logo } from '../components/logo/Logo.tsx';
 import styled from 'styled-components';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export const Keyword = () => {
+    const [search, setSearch] = useState('');
+    const navigate = useNavigate();
+
+    const onChange = (e) => {
+        setSearch(e.target.value);
+    };
+
+    const onSearch = async (e) => {
+        if (e.key === 'Enter') {
+            const response = await axios.get('http://localhost:8080/keywords?keyword=' + search);
+            navigate(`/food/${response.data.keywords[0].keywordId}?keyword=${response.data.keywords[0].name}`);
+        }
+    };
+
     return (
         <Wrapper>
             <Logo />
@@ -13,7 +30,7 @@ export const Keyword = () => {
                     <Name color={'#87933C'}>Meal</Name>
                     <Name color={'#D4DF90'}>.</Name>
                 </div>
-                <SearchBox placeholder="키워드를 입력해주세요"></SearchBox>
+                <SearchBox placeholder="키워드를 입력해주세요" onChange={onChange} onKeyDown={onSearch} value={search} />
                 <TagWrapper>
                     <Tag>무릎</Tag>
                     <Tag>위장염</Tag>
